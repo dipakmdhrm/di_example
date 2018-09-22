@@ -4,19 +4,11 @@ use DIExample\Mailer;
 use PDO;
 
 class SubscriberManager {
-  protected $pdo;
-  protected $mailer;
-
-  public function __construct(Mailer $mailer, PDO $pdo) {
-    $this->mailer = $mailer;
-    $this->pdo = $pdo;
-  }
-
-  public function notifySubscribers() {
+  public function notifySubscribers(Mailer $mailer, PDO $pdo) {
     // Get list of subscribers from datasource.
 
     $query = 'SELECT * FROM subscribers';
-    $subscribers = $this->pdo->query($query);
+    $subscribers = $pdo->query($query);
 
     // Sender and Subject of the mail.
     $sender = 'subscriptions@example.com';
@@ -31,7 +23,7 @@ You can visit the link below to read the article below. To unsubscribe, browse t
 EOF
       , $subscriber['name']);
 
-      $this->mailer->sendMail($sender, $subscriber['email'], $subject, $message);
+      $mailer->sendMail($sender, $subscriber['email'], $subject, $message);
     }
   }
 }

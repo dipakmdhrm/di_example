@@ -19,5 +19,5 @@ $mailer = new Mailer(
   $config['smtp_port']
 );
 
-$subscriberManager = new SubscriberManager($mailer, $pdo);
-$subscriberManager->notifySubscribers();
+$subscriberManager = new SubscriberManager();
+$subscriberManager->notifySubscribers($mailer, $pdo);
