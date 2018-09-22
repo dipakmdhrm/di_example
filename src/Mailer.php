@@ -12,11 +12,11 @@ class Mailer {
   protected $smtp_password;
   protected $smtp_port;
 
-  public function __construct() {
-    $this->hostname = 'smtp.blogtrottr.com';
-    $this->smtp_user = 'smtpuser';
-    $this->smtp_password = 'smtppass';
-    $this->smtp_port = '465';
+  public function __construct($hostname, $smtp_user, $smtp_password, $smtp_port) {
+    $this->hostname = $hostname;
+    $this->smtp_user = $smtp_user;
+    $this->smtp_password = $smtp_password;
+    $this->smtp_port = $smtp_port;
   }
 
   /**
