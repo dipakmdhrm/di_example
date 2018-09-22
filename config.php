@@ -1,7 +1,7 @@
 <?php
 
-$config['hostname'] = 'smtp.blogtrottr.com';
-$config['smtp_user'] = 'smtpuser';
-$config['smtp_password'] = 'smtppass';
-$config['smtp_port'] = '465';
-$config['dsn'] = 'sqlite:' . __DIR__ . '/data/database.sqlite';
+$container['hostname'] = 'smtp.blogtrottr.com';
+$container['smtp_user'] = 'smtpuser';
+$container['smtp_password'] = 'smtppass';
+$container['smtp_port'] = '465';
+$container['dsn'] = 'sqlite:' . __DIR__ . '/data/database.sqlite';
