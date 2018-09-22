@@ -1,16 +1,15 @@
 <?php
 namespace DIExample;
-
 use DIExample\Mailer;
 use PDO;
 
 class SubscriberManager {
   protected $pdo;
-  protected $config;
+  protected $mailer;
 
-  public function __construct($config) {
-    $this->config = $config;
-    $this->pdo = new PDO($this->config['dsn']);
+  public function __construct(Mailer $mailer, PDO $pdo) {
+    $this->mailer = $mailer;
+    $this->pdo = $pdo;
   }
 
   public function notifySubscribers() {
@@ -23,14 +22,6 @@ class SubscriberManager {
     $sender = 'subscriptions@example.com';
     $subject = 'New Article alert for you!';
 
-    // Initialize mailer.
-    $mailer = new Mailer(
-      $this->config['hostname'],
-      $this->config['smtp_user'],
-      $this->config['smtp_password'],
-      $this->config['smtp_port']
-    );
-
     // Send mail to each subscriber.
     foreach ($subscribers as $subscriber) {
       // Customized message of the mail.
@@ -40,7 +31,7 @@ You can visit the link below to read the article below. To unsubscribe, browse t
 EOF
       , $subscriber['name']);
 
-      $mailer->sendMail($sender, $subscriber['email'], $subject, $message);
+      $this->mailer->sendMail($sender, $subscriber['email'], $subject, $message);
     }
   }
 }
