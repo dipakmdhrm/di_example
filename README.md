@@ -27,9 +27,9 @@ The Project history follows is as follows. Each step is represented by the corre
     4. Remove config from SubscriberManager
     - **_Challenges:_**
         - **_SubscriberManager needs to know the implementation details of Mailer_**
-    - **_Can't mock test SubscriberManager_**
-    - **_This is where the concept of DI comes in_**
-4. Use constructor DI**
+        - **_Can't mock test SubscriberManager_**
+        - **_This is where the concept of DI comes in_**
+4. **Use constructor DI**
     1. Move Instantiation of PDO and Mailer from SubscriberManager.php to app.php and pass both to sendMail() method.
     2. This allows SubscriberManager to no more be concerned with the instantiation logic of Mailer.
     3. Can be unit tested by passing mock PDO & Mailer objects to constructor.
@@ -45,3 +45,6 @@ The Project history follows is as follows. Each step is represented by the corre
 8. **Move services to a separate file:**
     1. Move all services to service.php and include it in app.php
 9. **Extra: Add a Notifier interface**
+
+**Note:**
+Exercise derived from: https://github.com/piyuesh23/di_demo
